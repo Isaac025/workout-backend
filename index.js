@@ -8,7 +8,6 @@ const cors = require("cors");
 //express app
 const app = express();
 
-
 //middleware
 app.use(express.json()); // to parse JSON bodies
 app.use(cors()); // to enable CORS
