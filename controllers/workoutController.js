@@ -43,12 +43,20 @@ const createWorkout = async (req, res) => {
   const { title, reps, load } = req.body;
 
   if (!title || !reps || !load) {
-    return res.status(400).json({ error: "All fields are required" });
+    return res
+      .status(400)
+      .json({ success: false, message: "All fields are required" });
   }
 
   try {
     const workout = await WORKOUT.create({ title, reps, load });
-    res.status(201).json("workout created successfully", workout);
+    res
+      .status(201)
+      .json({
+        success: true,
+        message: "workout created successfully",
+        workout,
+      });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: error.message });
